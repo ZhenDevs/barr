@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive navbar</title>
+    <link rel="stylesheet" href="/gpt/responsive-navbar/css/style.css">
+        <style>
+
+        #parameter-input {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 200px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #chat-container {
+            max-width: 600px;
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #chat-history {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        div.chat-message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        div.user-message {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        div.bot-message {
+            background-color: #28A745;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body class="mobile">
+    <nav id="navbar">
+        <div class="container nav-wrapper">
+            <div class="brand">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M9.875 1C9.7 1 9.525 1.074 9.39 1.21l-4.5 4.5a1.505 1.505 0 0 0-.374 1.563L6 12.938v.003l.002.037c0 .268.107.525.293.713L11 18.789l4.08-4.08a1.5 1.5 0 0 0-.006-2.12l-4.5-4.5A1.498 1.498 0 0 0 9.875 1zM11 16.647L7.353 13 10 10.354 13.647 14 11 16.647z" />
+                </svg>
+                <span><strong>AI</strong></span>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="navbarList" class="nav-list">
+                <li class="active">
+                    <a href="#" data-target="">Home</a>
+                </li>
+                <li>
+                    <a href="#" data-target="chatgpt">ChatGPT</a>
+                </li>
+                <li>
+                   <button id="back" class="btn">back</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <section id="" class="header container">
+            <div>
+                <h1>Disini adalah gabungan dari beberapa ai</h1>
+                <h4>Mulai sekarang</h4>
+            </div>
+        </section>
+
+        <section id="chatgpt" class="header container">
+            <div>
+                <h1>ChatGPT - 4</h1>
+                    <div id="parameter-input">
+        <form onsubmit="return sendMessage()">
+            <input type="text" id="parameter" placeholder="Masukkan pertanyaan..." />
+            <input type="submit" value="Kirim" />
+        </form>
+    </div>
+        <div id="chat-container">
+        <div id="chat-history"></div>
+    </div>
+            </div>
+        </section>
+
+    <div id="chat-container">
+        <div id="chat-history"></div>
+    </div>
+            </div>
+        </section>
+    
+    </main>
+    <script src="/gpt/responsive-navbar/js/app.js"></script>
+    <script src="/gpt/responsive-navbar/js/chatgpt.js"></script>
+    <script src="/gpt/responsive-navbar/js/blackbox.js"></script>
+    <script>
+    document.getElementById('back').addEventListener('click', function() {
+        console.log('Button clicked');
+        window.location.href = "https://zhenn.securityhub.id";
+    });
+        
+        document.addEventListener('DOMContentLoaded', function () {
+    const navbarList = document.getElementById('navbarList');
+    const sections = document.querySelectorAll('section');
+
+    // Fungsi untuk menanggapi perubahan tautan dan menampilkan/menyembunyikan konten
+    function handleNavigation(event) {
+        event.preventDefault();
+        const targetSectionId = event.target.getAttribute('data-target');
+        sections.forEach(section => {
+            section.style.display = section.id === targetSectionId ? 'block' : 'none';
+        });
+    }
+
+    // Menambahkan event listener ke setiap elemen tautan di navbar
+    const navLinks = navbarList.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', handleNavigation);
+    });
+
+    // Menyembunyikan semua section kecuali yang aktif pertama kali
+    const defaultSectionId = window.location.hash.slice(1); // Mendapatkan bagian setelah karakter "#"
+    sections.forEach(section => {
+        section.style.display = section.id === defaultSectionId ? 'block' : 'none';
+    });
+});
+
+    </script>
+</body>
+
+</html>
